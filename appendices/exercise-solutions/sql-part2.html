@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Exercise Solutions: The SQL Sequel &#8212; Java Web Development  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/site.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Exercise Solutions: OMG the ORM!" href="orm-part1.html" />
+    <link rel="prev" title="Exercise Solutions: SQL, Part 1" href="sql-part1.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body class="body-bc">
+
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+        </a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<ol class="breadcrumb container">
+    <li><a href="../../index.html">Contents</a></li>
+    <li><a href="index.html">Exercise Solutions</a></li>
+    <li class="active">Exercise Solutions: The SQL Sequel</li>
+</ol>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 content ">
+
+    
+  <div class="section" id="exercise-solutions-the-sql-sequel">
+<span id="sql-part2-exercise-solutions"></span><h1>Exercise Solutions: The SQL Sequel<a class="headerlink" href="#exercise-solutions-the-sql-sequel" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="try-out-some-joins">
+<h2>Try Out Some Joins!<a class="headerlink" href="#try-out-some-joins" title="Permalink to this headline">¶</a></h2>
+<p>Before we jump in with our subqueries and more complex queries, let’s practice our joins from the previous chapter.
+After you write each query, look at the result set and reflect on why that information might be helpful.
+If you needed this database to manage your own garden, how would you use the result set?</p>
+<div class="section" id="inner-join">
+<span id="sql-part2-exercise-solutions-inner-join"></span><h3>Inner Join<a class="headerlink" href="#inner-join" title="Permalink to this headline">¶</a></h3>
+<p>Use an inner join on <code class="docutils literal notranslate"><span class="pre">seeds</span></code> and <code class="docutils literal notranslate"><span class="pre">garden_bed</span></code> to see which plants we have seeds for and are in our garden bed.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">seeds</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">garden_bed</span> <span class="k">ON</span> <span class="p">(</span><span class="n">seeds</span><span class="p">.</span><span class="n">plant_id</span><span class="o">=</span><span class="n">garden_bed</span><span class="p">.</span><span class="n">plant_id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../../chapters/sql-part2/exercises.html#sql-part2-exercises"><span class="std std-ref">Back to the exercises</span></a></p>
+</div>
+<div class="section" id="right-join">
+<span id="sql-part2-exercise-solutions-right-join"></span><h3>Right Join<a class="headerlink" href="#right-join" title="Permalink to this headline">¶</a></h3>
+<p>Write a query that joins <code class="docutils literal notranslate"><span class="pre">seeds</span></code> and <code class="docutils literal notranslate"><span class="pre">garden_bed</span></code> with a right join to see all the plants in the garden bed and any matching seeds we have.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">seeds</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="n">garden_bed</span> <span class="k">ON</span> <span class="n">seeds</span><span class="p">.</span><span class="n">plant_id</span><span class="o">=</span><span class="n">garden_bed</span><span class="p">.</span><span class="n">plant_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../../chapters/sql-part2/exercises.html#sql-part2-exercises"><span class="std std-ref">Back to the exercises</span></a></p>
+</div>
+</div>
+<div class="section" id="sub-queries-and-complex-queries">
+<span id="sql-part2-exercise-solutions-sub-query"></span><h2>Sub-Queries and Complex Queries<a class="headerlink" href="#sub-queries-and-complex-queries" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>When we were writing our joins, you may have noticed that the information that was most helpful to you (the <code class="docutils literal notranslate"><span class="pre">plant_name</span></code>) was missing from the result set! Write a query that gets the name of the plant by joining the <code class="docutils literal notranslate"><span class="pre">plant</span></code> table on the result set of the inner join query above. <em>Hint</em>: Open the query tab with the inner join query and copy it into a new query tab to start. Once you have your inner join setup in a new query tab, it will be easier to write your subquery.</li>
+</ol>
+<div class="highlight-sql notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">plant_name</span>
+<span class="k">FROM</span> <span class="n">plant</span>
+<span class="k">INNER</span> <span class="k">JOIN</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="n">seeds</span><span class="p">.</span><span class="n">plant_id</span> <span class="k">FROM</span> <span class="n">seeds</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">garden_bed</span> <span class="k">ON</span> <span class="n">seeds</span><span class="p">.</span><span class="n">plant_id</span><span class="o">=</span><span class="n">garden_bed</span><span class="p">.</span><span class="n">plant_id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">planted_plants</span> <span class="k">ON</span> <span class="n">plant</span><span class="p">.</span><span class="n">plant_id</span><span class="o">=</span><span class="n">planted_plants</span><span class="p">.</span><span class="n">plant_id</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+<p><a class="reference internal" href="../../chapters/sql-part2/exercises.html#sql-part2-exercises"><span class="std std-ref">Back to the exercises</span></a></p>
+</div>
+</div>
+
+
+
+    
+    <nav aria-label="Next and Previous Pages">
+      <ul class="pager">
+        
+        <li class="previous"><a href="sql-part1.html"><span aria-hidden="true">&larr;</span> Exercise Solutions: SQL, Part 1</a></li>
+        
+        
+        <li class="next"><a href="orm-part1.html">Exercise Solutions: OMG the ORM! <span aria-hidden="true">&rarr;</span></a></li>
+        
+      </ul>
+    </nav>
+    
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/appendices/exercise-solutions/sql-part2.rst.txt"
+     rel="nofollow">Page Source</a>
+</div>
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
